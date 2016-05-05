@@ -2,12 +2,13 @@ import java.util.Scanner;
 
 public class run {
 
-	static boolean run = true;
+	static boolean gameOn = true;
 	static Scanner sc = new Scanner(System.in);
 	static int numOfPlayers;
 	static int n = 1;
 	static int hitCounter = 1;
 	static int hitCounterD = 2;
+	
 	
 	// Skapa dealer
 	static Hand dealer = new Hand();
@@ -20,10 +21,10 @@ public class run {
 	static Hand[] players = null;
 
 	public static void main(String[] args) {
-
+		
 		// Sätter antalet spelare..
-		// System.out.println("How many players?: ");
-		numOfPlayers = 2;
+		System.out.println("How many players?: ");
+		numOfPlayers = sc.nextInt();
 
 		// Skapa/blanda kortlek
 		createDeck();
@@ -90,6 +91,7 @@ public class run {
 	}
 	static void hitPlayer() {
 		d.deal(player, 1);
+		hitCounter++;
 		player.cards.get(hitCounter).flipCard();
 		System.out.println(player.showHand());
 	}
@@ -102,6 +104,7 @@ public class run {
 		boolean run = true;
 		while (run) {
 		if (player.getTotal() < 22) {
+			player.showHand();
 			System.out.println("hit or stay?");
 			String input = sc.next();
 			if (input.equalsIgnoreCase("hit")) {
@@ -119,7 +122,7 @@ public class run {
 	} 
 	static void dealerScore() {
 		dealer.cards.get(1).flipCard();
-		System.out.println(dealer.showHand());
+		System.out.println("\nDealer has: \n" + dealer.showHand());
 		while (dealer.getTotal() < 17) {
 			System.out.println("Dealer has: " + dealer.getTotal() + "\nDealer have to hit..\n");
 			hitDealer();
@@ -149,6 +152,7 @@ public class run {
 		while (run) {
 		for (int i = 0; i < players.length; i++) {
 		if (players[i].getTotal() < 22) {
+			players[i].showHand();
 			i++;
 			System.out.println("Player " + i +". Hit or stay?");
 			i--;
@@ -162,7 +166,7 @@ public class run {
 			} else if (input.equalsIgnoreCase("stay")){
 				hitCounter = 1;
 				continue;
-			}
+			} 
 		} else {
 			hitCounter = 1;
 			i++;
