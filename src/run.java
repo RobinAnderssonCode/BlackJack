@@ -140,7 +140,7 @@ public class run {
 			System.out.println("You lose!");
 		} else if (dealer.getTotal() < player.getTotal()) {
 			System.out.println("You win!");
-		} else {
+		} else if (dealer.getTotal() < player.getTotal() && player.getTotal() < 22){
 			System.out.println("It´s a tie!");
 		}
 	}
@@ -188,12 +188,13 @@ public class run {
 				i++;
 				System.out.println("Player " + i + " win!\n");
 				i--;
-			} else {
+			} else if (dealer.getTotal() == players[i].getTotal() && players[i].getTotal() < 22){
 				i++;
 				System.out.println("Player " + i + " ties!");
 				i--;
 			}
 		}
 	}
+
 }
 
