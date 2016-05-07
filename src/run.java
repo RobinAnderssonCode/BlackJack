@@ -52,6 +52,7 @@ public class run {
 		} else {
 			playersChoice();
 		}
+		
 
 	}
 
@@ -149,7 +150,7 @@ public class run {
 			System.out.println("You lose!");
 		} else if (dealer.getTotal() < player.getTotal()) {
 			System.out.println("You win!");
-		} else if (dealer.getTotal() < player.getTotal() && player.getTotal() < 22) {
+		} else if (dealer.getTotal() == player.getTotal() && player.getTotal() < 22) {
 			System.out.println("It´s a tie!");
 		}
 	}
